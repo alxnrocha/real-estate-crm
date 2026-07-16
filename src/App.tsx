@@ -1,5 +1,6 @@
 import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardMetrics } from './components/dashboard/DashboardMetrics';
+import { PropertiesTable } from './components/properties/PropertiesTable';
 
 function App() {
   return (
@@ -11,11 +12,11 @@ function App() {
       
       <DashboardMetrics />
       
-      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 min-h-[400px]">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Actividad Reciente</h2>
-        <div className="flex items-center justify-center h-full text-gray-400">
-          (Data table de propiedades vendrá aquí pronto...)
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-gray-900">Propiedades Recientes</h2>
         </div>
+        <PropertiesTable />
       </div>
     </DashboardLayout>
   );
