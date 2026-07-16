@@ -4,7 +4,11 @@ import { Button } from '../ui/Button';
 import { mockProperties, Property, PropertyStatus } from '../../utils/mockData';
 import { Edit, Trash2, Eye } from 'lucide-react';
 
-export const PropertiesTable: React.FC = () => {
+interface PropertiesTableProps {
+  onViewProperty?: (property: Property) => void;
+}
+
+export const PropertiesTable: React.FC<PropertiesTableProps> = ({ onViewProperty }) => {
   const getStatusVariant = (status: PropertyStatus) => {
     switch (status) {
       case 'Available': return 'success';
@@ -48,7 +52,7 @@ export const PropertiesTable: React.FC = () => {
                 </Badge>
               </td>
               <td className="px-6 py-4 text-right flex justify-end gap-2">
-                <Button variant="ghost" size="sm" className="h-8 w-8 p-0"><Eye size={16} /></Button>
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => onViewProperty?.(prop)}><Eye size={16} /></Button>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-indigo-600"><Edit size={16} /></Button>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600"><Trash2 size={16} /></Button>
               </td>

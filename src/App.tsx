@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardMetrics } from './components/dashboard/DashboardMetrics';
 import { PropertiesTable } from './components/properties/PropertiesTable';
 import { PropertyForm } from './components/properties/PropertyForm';
+import { PropertyDetailsPanel } from './components/properties/PropertyDetailsPanel';
+import { Property } from './utils/mockData';
 
 function App() {
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+
   return (
     <DashboardLayout>
       <div className="mb-6">
@@ -18,13 +23,19 @@ function App() {
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-gray-900">Propiedades Recientes</h2>
           </div>
-          <PropertiesTable />
+          <PropertiesTable onViewProperty={setSelectedProperty} />
         </div>
         
         <div className="xl:col-span-1">
           <PropertyForm />
         </div>
       </div>
+
+      <PropertyDetailsPanel 
+        property={selectedProperty} 
+        isOpen={!!selectedProperty} 
+        onClose={() => setSelectedProperty(null)} 
+      />
     </DashboardLayout>
   );
 }
