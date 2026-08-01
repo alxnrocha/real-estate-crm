@@ -40,9 +40,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             className={`
               w-full rounded-md border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-0 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500
+              dark:bg-slate-800 dark:text-gray-100 dark:disabled:bg-slate-900 dark:disabled:text-gray-600
               ${error 
-                ? 'border-red-500 focus:border-red-500 focus:ring-red-200' 
-                : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-200'
+                ? 'border-red-500 focus:border-red-500 focus:ring-red-200 dark:border-red-500/50 dark:focus:ring-red-900/50' 
+                : 'border-gray-300 focus:border-blue-500 focus:ring-blue-200 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-900/50'
               }
               ${leftIcon ? 'pl-10' : 'pl-3'}
               ${rightIcon ? 'pr-10' : 'pr-3'}
