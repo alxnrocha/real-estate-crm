@@ -1,32 +1,51 @@
-# React + TypeScript + Vite
+# Proyecto 08 - CRM Inmobiliario 🏠
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Un CRM inmobiliario completo diseñado para que los agentes administren propiedades, citas, y visualicen métricas clave del negocio. Creado como parte de la currícula progresiva, este proyecto se enfoca en la gestión de estado global, componentes reusables de interfaz de usuario, y diseño responsivo utilizando tecnologías modernas.
 
-Currently, two official plugins are available:
+## 🌟 Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Autenticación Mock:** Sistema de autenticación de estado simulado y rutas protegidas.
+- **Dashboard Analítico:** Tarjetas de métricas con gráficos (Ventas, Visitas, Conversiones) utilizando Recharts.
+- **Gestión de Propiedades:** Tabla de datos con filtros en tiempo real por estado, tipo, precio y más.
+- **Sistema de Calendario:** Vista de calendario para gestionar visitas y reuniones.
+- **Formularios Robustos:** Creación de inmuebles con validación estricta a través de React Hook Form y Zod.
+- **Diseño System Propio:** Componentes primitivos (Input, Badge, Button, Card) creados desde cero e integrados con Tailwind v4.
 
-## React Compiler
+## 🚀 Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Core:** React 19 + TypeScript + Vite.
+- **Estilos:** Tailwind CSS v4, Lucide React (íconos).
+- **Gestión de Estado:** Zustand (Auth, Properties, Filters).
+- **Formularios:** React Hook Form + Zod.
+- **Gráficos:** Recharts.
 
-## Expanding the Oxlint configuration
+## 📦 Instalación y Uso
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+1. Clonar el repositorio.
+2. Navegar al directorio `08-real-estate-crm`:
+   ```bash
+   cd 08-real-estate-crm
+   ```
+3. Instalar las dependencias:
+   ```bash
+   npm install
+   ```
+4. Iniciar el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+*Nota: Inicie sesión con cualquier correo que contenga '@' y una contraseña mayor a 5 caracteres (Simulación).*
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 🧩 Estructura de Componentes
+
+La estructura de carpetas prioriza la separación por características (Feature-driven):
+- `src/components/ui/` - Componentes atómicos e independientes (Botones, inputs, tarjetas).
+- `src/components/layout/` - Sidebar, Header y envoltorio principal.
+- `src/components/properties/` - Formularios, tablas y paneles de propiedades.
+- `src/store/` - Estado global con Zustand.
+- `src/services/` - Capa de API mock para asincronía simulada.
+
+## 🛠 Próximos Pasos & Lecciones Aprendidas
+
+En este proyecto consolidamos el uso avanzado de **Zustand** para dividir stores (Autenticación, Filtros y Propiedades) y el manejo de esquemas con **Zod**, preparando el terreno para interacciones con bases de datos reales en los próximos proyectos de la serie.
