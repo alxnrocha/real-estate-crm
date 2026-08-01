@@ -5,11 +5,19 @@ import { PropertiesTable } from './components/properties/PropertiesTable';
 import { PropertyForm } from './components/properties/PropertyForm';
 import { PropertyDetailsPanel } from './components/properties/PropertyDetailsPanel';
 import { CalendarView } from './components/calendar/CalendarView';
-import { Property } from './utils/mockData';
+import { Login } from './components/auth/Login';
+import { useAuthStore } from './store/authStore';
+import type { Property } from './utils/mockData';
 
 function App() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
   const [activeView, setActiveView] = useState<'dashboard' | 'calendar'>('dashboard');
+  
+  const { isAuthenticated } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Login />;
+  }
 
   return (
     <DashboardLayout>

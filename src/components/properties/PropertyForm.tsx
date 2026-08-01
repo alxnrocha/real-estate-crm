@@ -19,7 +19,7 @@ type PropertyFormData = z.infer<typeof propertySchema>;
 
 export const PropertyForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<PropertyFormData>({
-    resolver: zodResolver(propertySchema),
+    resolver: zodResolver(propertySchema) as any,
   });
 
   const onSubmit = (data: PropertyFormData) => {

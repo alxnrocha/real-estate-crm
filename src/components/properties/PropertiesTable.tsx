@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
-import { mockProperties, Property, PropertyStatus } from '../../utils/mockData';
+import { mockProperties, type Property, type PropertyStatus } from '../../utils/mockData';
 import { Edit, Trash2, Eye } from 'lucide-react';
 
 interface PropertiesTableProps {
