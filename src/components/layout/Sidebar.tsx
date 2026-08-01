@@ -22,6 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         <div 
           className="fixed inset-0 z-40 bg-black/50 md:hidden"
           onClick={onClose}
+          aria-hidden="true"
         />
       )}
 
@@ -32,11 +33,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           md:relative md:translate-x-0
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
+        aria-label="Sidebar de navegación"
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
           <span className="text-xl font-bold text-gray-900">CRM Inmobiliario</span>
           <button 
             onClick={onClose}
+            aria-label="Cerrar menú"
             className="md:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-md"
           >
             <X size={20} />

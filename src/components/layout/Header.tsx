@@ -11,23 +11,25 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
       <div className="flex items-center gap-4">
         <button
           onClick={onMenuClick}
+          aria-label="Abrir menú"
           className="p-2 text-gray-500 rounded-md md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
         >
           <Menu size={24} />
         </button>
         
         <div className="hidden md:flex items-center max-w-md bg-gray-100 rounded-md px-3 py-1.5">
-          <Search size={18} className="text-gray-400" />
+          <Search size={18} className="text-gray-400" aria-hidden="true" />
           <input 
             type="text" 
             placeholder="Buscar propiedades..." 
+            aria-label="Buscar propiedades"
             className="w-full bg-transparent border-none focus:ring-0 text-sm ml-2 placeholder-gray-500 text-gray-900"
           />
         </div>
       </div>
 
       <div className="flex items-center gap-4">
-        <button className="p-2 text-gray-400 hover:text-gray-500 relative">
+        <button className="p-2 text-gray-400 hover:text-gray-500 relative" aria-label="Notificaciones">
           <Bell size={20} />
           <span className="absolute top-1.5 right-1.5 block h-2 w-2 rounded-full bg-red-400 ring-2 ring-white" />
         </button>
