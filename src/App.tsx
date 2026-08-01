@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardMetrics } from './components/dashboard/DashboardMetrics';
 import { PropertiesTable } from './components/properties/PropertiesTable';
@@ -7,6 +7,7 @@ import { PropertyDetailsPanel } from './components/properties/PropertyDetailsPan
 import { CalendarView } from './components/calendar/CalendarView';
 import { Login } from './components/auth/Login';
 import { useAuthStore } from './store/authStore';
+import { usePropertyStore } from './store/propertyStore';
 import type { Property } from './utils/mockData';
 
 function App() {
@@ -14,6 +15,13 @@ function App() {
   const [activeView, setActiveView] = useState<'dashboard' | 'calendar'>('dashboard');
   
   const { isAuthenticated } = useAuthStore();
+  const { fetchProperties } = usePropertyStore();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchProperties();
+    }
+  }, [isAuthenticated, fetchProperties]);
 
   if (!isAuthenticated) {
     return <Login />;
