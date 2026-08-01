@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { PropertyType, PropertyStatus } from '../utils/mockData';
+import type { PropertyType, PropertyStatus } from '../utils/mockData';
 
 export interface PropertyFilters {
   searchTerm: string;

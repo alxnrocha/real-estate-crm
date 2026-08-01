@@ -1,6 +1,7 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, BedDouble, Bath, Maximize, MapPin } from 'lucide-react';
-import { Property, PropertyStatus } from '../../utils/mockData';
+import type { Property, PropertyStatus } from '../../utils/mockData';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 
@@ -27,7 +28,7 @@ export const PropertyDetailsPanel: React.FC<PropertyDetailsPanelProps> = ({ prop
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(val);
   };
 
-  return (
+  return createPortal(
     <>
       <div 
         className="fixed inset-0 bg-gray-900/50 z-40 transition-opacity"
@@ -110,6 +111,7 @@ export const PropertyDetailsPanel: React.FC<PropertyDetailsPanelProps> = ({ prop
           <Button variant="primary" className="flex-1">Contactar Cliente</Button>
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 };
