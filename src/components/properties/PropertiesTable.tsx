@@ -88,9 +88,9 @@ export const PropertiesTable: React.FC<PropertiesTableProps> = ({ onViewProperty
                   </Badge>
                 </td>
                 <td className="px-6 py-4 text-right flex justify-end gap-2">
-                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => onViewProperty?.(prop)}><Eye size={16} /></Button>
-                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-indigo-600"><Edit size={16} /></Button>
-                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600"><Trash2 size={16} /></Button>
+                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => onViewProperty?.(prop)} aria-label="Ver propiedad"><Eye size={16} /></Button>
+                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-indigo-600" aria-label="Editar propiedad"><Edit size={16} /></Button>
+                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-red-600" aria-label="Eliminar propiedad"><Trash2 size={16} /></Button>
                 </td>
               </tr>
             ))

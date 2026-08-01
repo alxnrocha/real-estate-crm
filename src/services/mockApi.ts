@@ -1,13 +1,12 @@
 import { mockProperties, type Property } from '../utils/mockData';
 
-const DELAY = 800; // Simular latência de rede
+const DELAY = 800; // Simulate network latency
 
 export const mockApi = {
-  // Simular requisição de propriedades
   fetchProperties: async (): Promise<Property[]> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simular 5% de chance de erro de rede para testar tratamento de erros
+        // Simulate 5% network error rate to test error handling
         if (Math.random() < 0.05) {
           reject(new Error('Network Error: Failed to fetch properties.'));
         } else {
@@ -17,11 +16,10 @@ export const mockApi = {
     });
   },
 
-  // Simular requisição de login
   loginAgent: async (email: string, password: string): Promise<{ id: string; name: string; email: string; token: string }> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock simples: aceita cualquier login
+        // Basic mock: accept any valid-looking email
         if (email.includes('@') && password.length > 5) {
           resolve({
             id: 'agent-101',
@@ -36,7 +34,6 @@ export const mockApi = {
     });
   },
 
-  // Simular creación de propiedad
   createProperty: async (propertyData: Omit<Property, 'id' | 'image' | 'status'>): Promise<Property> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
