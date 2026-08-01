@@ -21,7 +21,7 @@ export const mockApi = {
   loginAgent: async (email: string, password: string): Promise<{ id: string; name: string; email: string; token: string }> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock simples: aceita qualquer login que contenha '@' e senha maior que 5 char
+        // Mock simples: aceita cualquier login
         if (email.includes('@') && password.length > 5) {
           resolve({
             id: 'agent-101',
@@ -31,6 +31,25 @@ export const mockApi = {
           });
         } else {
           reject(new Error('Credenciais inválidas. Use um e-mail válido e senha com mais de 5 caracteres.'));
+        }
+      }, DELAY);
+    });
+  },
+
+  // Simular creación de propiedad
+  createProperty: async (propertyData: Omit<Property, 'id' | 'image' | 'status'>): Promise<Property> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() < 0.05) {
+          reject(new Error('Error de red al crear propiedad.'));
+        } else {
+          const newProperty: Property = {
+            id: Math.floor(Math.random() * 10000).toString(),
+            ...propertyData,
+            image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
+            status: 'Available'
+          };
+          resolve(newProperty);
         }
       }, DELAY);
     });

@@ -5,6 +5,8 @@ import * as z from 'zod';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 
+import { usePropertyStore } from '../../store/propertyStore';
+
 const propertySchema = z.object({
   title: z.string().min(5, 'El título debe tener al menos 5 caracteres'),
   address: z.string().min(10, 'La dirección es muy corta'),
@@ -18,18 +20,26 @@ const propertySchema = z.object({
 type PropertyFormData = z.infer<typeof propertySchema>;
 
 export const PropertyForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<PropertyFormData>({
+  const { addProperty, isLoading, error } = usePropertyStore();
+  
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<PropertyFormData>({
     resolver: zodResolver(propertySchema) as any,
   });
 
-  const onSubmit = (data: PropertyFormData) => {
-    console.log('Form data:', data);
-    alert('Propiedad registrada con éxito (ver console log)');
+  const onSubmit = async (data: PropertyFormData) => {
+    try {
+      await addProperty(data);
+      reset();
+      alert('Propiedad registrada con éxito');
+    } catch (err) {
+      alert('Error al registrar propiedad');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
       <h2 className="text-xl font-bold text-gray-900 mb-4">Añadir Nueva Propiedad</h2>
+      {error && <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">{error}</div>}
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Input 
@@ -87,7 +97,7 @@ export const PropertyForm: React.FC = () => {
       </div>
       
       <div className="flex justify-end mt-6">
-        <Button type="submit" variant="primary">Registrar Propiedad</Button>
+        <Button type="submit" variant="primary" isLoading={isLoading}>Registrar Propiedad</Button>
       </div>
     </form>
   );
