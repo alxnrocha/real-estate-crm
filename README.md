@@ -46,6 +46,10 @@ La estructura de carpetas prioriza la separación por características (Feature-
 - `src/store/` - Estado global con Zustand.
 - `src/services/` - Capa de API mock para asincronía simulada.
 
+## 🗄️ Modelo de Base de Datos
+
+El proyecto incluye un modelo relacional teórico (esquema SQL, datos de ejemplo y diagrama DER) para las entidades del CRM: agentes, clientes, propiedades y citas. Ver [`database/README.md`](./database/README.md).
+
 ## 🛠 Próximos Pasos & Lecciones Aprendidas
 
 En este proyecto consolidamos el uso avanzado de **Zustand** para dividir stores (Autenticación, Filtros y Propiedades) y el manejo de esquemas con **Zod**, preparando el terreno para interacciones con bases de datos reales en los próximos proyectos de la serie.
