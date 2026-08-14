@@ -2,6 +2,14 @@
 
 Un CRM inmobiliario completo diseñado para que los agentes administren propiedades, citas, y visualicen métricas clave del negocio. Creado como parte de la currícula progresiva, este proyecto se enfoca en la gestión de estado global, componentes reusables de interfaz de usuario, y diseño responsivo utilizando tecnologías modernas.
 
+## 📸 Vista General
+
+### Desktop
+![Desktop View](./screenshots/desktop.png)
+
+### Mobile
+![Mobile View](./screenshots/mobile.png)
+
 ## 🌟 Características
 
 - **Autenticación Mock:** Sistema de autenticación de estado simulado y rutas protegidas.
