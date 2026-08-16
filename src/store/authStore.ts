@@ -21,8 +21,13 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  agent: null,
-  isAuthenticated: false,
+  agent: {
+    id: 'agent_1',
+    name: 'Carlos Mendoza',
+    email: 'agente@inmoflow.com',
+    token: 'mock-agent-token-2026'
+  },
+  isAuthenticated: true,
   isLoading: false,
   error: null,
 
