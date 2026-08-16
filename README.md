@@ -17,6 +17,7 @@
 ## ✨ Características Principales
 
 ### 🚀 Experiencia de Usuario & Frontend
+
 - **Directorio y Filtros Multicriterio de Inmuebles:** Filtrado en tiempo real por tipo de propiedad (piso, casa, local), rango de precio, número de habitaciones, ubicación y estado comercial (`Disponible`, `Reservado`, `Vendido`).
 - **Dashboard Analítico con Recharts:** Métricas de volumen de ventas, tasa de conversión y distribución de visitas comerciales.
 - **Formularios con Validación Estricta:** Creación y edición de inmuebles mediante React Hook Form y esquemas de validación con Zod.
@@ -24,6 +25,7 @@
 - **Sistema de Calendario y Citas:** Organización visual de visitas presenciales y reuniones con clientes.
 
 ### 🛡️ Modelo de Base de Datos Relacional
+
 - Esquema DDL SQL documentado en [`database/README.md`](./database/README.md) con entidades para agentes, clientes, inmuebles y visitas.
 
 ---
@@ -37,9 +39,6 @@
 │   ├── README.md
 │   ├── schema.sql
 │   └── seed.sql
-├── screenshots/                   # Capturas de pantalla reales
-│   ├── desktop.png
-│   └── mobile.png
 ├── src/
 │   ├── components/
 │   │   ├── layout/                # Sidebar, Header y DashboardLayout
@@ -59,6 +58,7 @@
 ## ⚡ Guía de Inicio Rápido
 
 ### 1. Clonar e Instalar Dependencias
+
 ```bash
 git clone https://github.com/alxnrocha/real-estate-crm.git
 cd real-estate-crm
@@ -66,6 +66,7 @@ npm install
 ```
 
 ### 2. Iniciar en Modo Desarrollo
+
 ```bash
 npm run dev
 ```
@@ -74,11 +75,11 @@ npm run dev
 
 ## 🔑 Credenciales de Demostración
 
-| Rol | Correo Electrónico | Contraseña |
-| :--- | :--- | :--- |
+| Rol                     | Correo Electrónico    | Contraseña     |
+| :---------------------- | :-------------------- | :------------- |
 | **Agente Inmobiliario** | `agente@inmoflow.com` | `Password123!` |
 
-*(La demo en GitHub Pages permite iniciar sesión con cualquier correo válido).*
+_(La demo en GitHub Pages permite iniciar sesión con cualquier correo válido)._
 
 ---
 
