@@ -1,0 +1,27 @@
+-- Migration 0003: create `properties` table
+CREATE TABLE IF NOT EXISTS `properties` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `agent_id` BIGINT UNSIGNED NOT NULL,
+  `client_id` BIGINT UNSIGNED NULL,
+  `title` VARCHAR(200) NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
+  `price` DECIMAL(12,2) NOT NULL,
+  `type` ENUM('House','Apartment','Condo','Villa','Land') NOT NULL,
+  `status` ENUM('Available','Sold','Rented','Pending') NOT NULL DEFAULT 'Available',
+  `bedrooms` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  `bathrooms` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  `area` DECIMAL(8,2) NOT NULL,
+  `image_url` VARCHAR(500) NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_properties_agent` (`agent_id`),
+  KEY `idx_properties_client` (`client_id`),
+  KEY `idx_properties_status` (`status`),
+  KEY `idx_properties_type` (`type`),
+  KEY `idx_properties_price` (`price`),
+  CONSTRAINT `fk_properties_agent` FOREIGN KEY (`agent_id`) REFERENCES `agents` (`id`) ON DELETE RESTRICT,
+  CONSTRAINT `fk_properties_client` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `chk_properties_price` CHECK (`price` >= 0),
+  CONSTRAINT `chk_properties_area` CHECK (`area` > 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

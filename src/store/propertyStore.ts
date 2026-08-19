@@ -1,13 +1,12 @@
 import { create } from 'zustand';
 import type { Property } from '../utils/mockData';
-import { mockApi } from '../services/mockApi';
+import { api } from '../services/api';
 
 interface PropertyState {
   properties: Property[];
   isLoading: boolean;
   error: string | null;
-  
-  // Actions
+
   fetchProperties: () => Promise<void>;
   addProperty: (property: Omit<Property, 'id' | 'image' | 'status'>) => Promise<void>;
 }
@@ -20,7 +19,7 @@ export const usePropertyStore = create<PropertyState>((set) => ({
   fetchProperties: async () => {
     set({ isLoading: true, error: null });
     try {
-      const data = await mockApi.fetchProperties();
+      const data = await api.fetchProperties();
       set({ properties: data, isLoading: false });
     } catch (err: any) {
       set({ error: err.message, isLoading: false });
@@ -30,14 +29,14 @@ export const usePropertyStore = create<PropertyState>((set) => ({
   addProperty: async (propertyData) => {
     set({ isLoading: true, error: null });
     try {
-      const newProp = await mockApi.createProperty(propertyData);
-      set((state) => ({ 
+      const newProp = await api.createProperty(propertyData);
+      set((state) => ({
         properties: [newProp, ...state.properties],
-        isLoading: false 
+        isLoading: false,
       }));
     } catch (err: any) {
       set({ error: err.message, isLoading: false });
       throw err;
     }
-  }
+  },
 }));

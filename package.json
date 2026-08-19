@@ -9,7 +9,13 @@
     "lint": "oxlint",
     "format": "prettier --write .",
     "prepare": "husky",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:server": "npm --prefix server run dev",
+    "build:server": "npm --prefix server run build",
+    "db:migrate": "npm --prefix server run db:migrate",
+    "db:rollback": "npm --prefix server run db:rollback",
+    "seed": "npm --prefix server run seed",
+    "test:server": "npm --prefix server test"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

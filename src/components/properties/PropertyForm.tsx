@@ -21,8 +21,13 @@ type PropertyFormData = z.infer<typeof propertySchema>;
 
 export const PropertyForm: React.FC = () => {
   const { addProperty, isLoading, error } = usePropertyStore();
-  
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<PropertyFormData>({
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<PropertyFormData>({
     resolver: zodResolver(propertySchema) as any,
   });
 
@@ -31,44 +36,57 @@ export const PropertyForm: React.FC = () => {
       await addProperty(data);
       reset();
       alert('Propiedad registrada con éxito');
-    } catch (err) {
+    } catch {
       alert('Error al registrar propiedad');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700/50 transition-colors">
-      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Añadir Nueva Propiedad</h2>
-      {error && <div className="bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border dark:border-red-500/20 p-3 rounded-md text-sm">{error}</div>}
-      
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700/50 transition-colors"
+    >
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        Añadir Nueva Propiedad
+      </h2>
+      {error && (
+        <div className="bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border dark:border-red-500/20 p-3 rounded-md text-sm">
+          {error}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Input 
-          label="Título de la propiedad" 
+        <Input
+          label="Título de la propiedad"
           placeholder="Ej: Villa Moderna con Piscina"
-          {...register('title')} 
-          error={errors.title?.message} 
+          {...register('title')}
+          error={errors.title?.message}
         />
-        <Input 
-          label="Dirección completa" 
+        <Input
+          label="Dirección completa"
           placeholder="Ej: Carrer de la Marina 120"
-          {...register('address')} 
-          error={errors.address?.message} 
+          {...register('address')}
+          error={errors.address?.message}
         />
-        <Input 
-          label="Precio (€)" 
+        <Input
+          label="Precio (€)"
           type="number"
           placeholder="850000"
-          {...register('price')} 
-          error={errors.price?.message} 
+          {...register('price')}
+          error={errors.price?.message}
         />
         <div className="flex flex-col gap-1.5">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de propiedad</label>
-          <select 
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Tipo de propiedad
+          </label>
+          <select
             {...register('type')}
             className={`w-full rounded-md border text-sm focus:outline-none focus:ring-2 focus:ring-offset-0 py-2 h-10 px-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 transition-colors
-              ${errors.type 
-                ? 'border-red-500 focus:border-red-500 focus:ring-red-200 dark:border-red-500/50 dark:focus:ring-red-900/50' 
-                : 'border-gray-300 focus:border-blue-500 focus:ring-blue-200 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-900/50'}`}
+              ${
+                errors.type
+                  ? 'border-red-500 focus:border-red-500 focus:ring-red-200 dark:border-red-500/50 dark:focus:ring-red-900/50'
+                  : 'border-gray-300 focus:border-blue-500 focus:ring-blue-200 dark:border-slate-700 dark:focus:border-blue-500 dark:focus:ring-blue-900/50'
+              }`}
           >
             <option value="House">Casa</option>
             <option value="Apartment">Apartamento</option>
@@ -76,30 +94,29 @@ export const PropertyForm: React.FC = () => {
             <option value="Villa">Villa</option>
             <option value="Land">Terreno</option>
           </select>
-          {errors.type && <p className="text-xs text-red-500 dark:text-red-400">{errors.type.message}</p>}
+          {errors.type && (
+            <p className="text-xs text-red-500 dark:text-red-400">{errors.type.message}</p>
+          )}
         </div>
-        <Input 
-          label="Habitaciones" 
+        <Input
+          label="Habitaciones"
           type="number"
-          {...register('bedrooms')} 
-          error={errors.bedrooms?.message} 
+          {...register('bedrooms')}
+          error={errors.bedrooms?.message}
         />
-        <Input 
-          label="Baños" 
+        <Input
+          label="Baños"
           type="number"
-          {...register('bathrooms')} 
-          error={errors.bathrooms?.message} 
+          {...register('bathrooms')}
+          error={errors.bathrooms?.message}
         />
-        <Input 
-          label="Área (m²)" 
-          type="number"
-          {...register('area')} 
-          error={errors.area?.message} 
-        />
+        <Input label="Área (m²)" type="number" {...register('area')} error={errors.area?.message} />
       </div>
-      
+
       <div className="flex justify-end mt-6">
-        <Button type="submit" variant="primary" isLoading={isLoading}>Registrar Propiedad</Button>
+        <Button type="submit" variant="primary" isLoading={isLoading}>
+          Registrar Propiedad
+        </Button>
       </div>
     </form>
   );

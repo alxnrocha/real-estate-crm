@@ -16,6 +16,27 @@ jobs:
   check:
     name: Lint, Test, Build & Deploy
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: real_estate_crm
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      DB_HOST: 127.0.0.1
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: real_estate_crm
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,12 +45,30 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: npm ci
 
-      - name: Build
+      - name: Install server dependencies
+        working-directory: server
+        run: npm ci
+
+      - name: Lint workspace
+        run: npm run lint
+
+      - name: Apply server database migrations
+        working-directory: server
+        run: npm run db:migrate
+
+      - name: Run server tests (unit + integration against MySQL)
+        working-directory: server
+        run: npm test
+
+      - name: Build server (TypeScript)
+        working-directory: server
+        run: npm run build
+
+      - name: Build frontend (Vite)
         run: npm run build
 
       - name: Deploy to GitHub Pages

@@ -1,0 +1,38 @@
+{
+  "name": "real-estate-crm-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc && node -e \"import('fs').then(fs => { fs.mkdirSync('dist/migrations', {recursive: true}); const mg=fs.readdirSync('migrations'); mg.forEach(f => fs.copyFileSync(`migrations/${f}`, `dist/migrations/${f}`)); })\"",
+    "start": "node dist/server.js",
+    "db:migrate": "tsx src/scripts/migrate.ts up",
+    "db:rollback": "tsx src/scripts/migrate.ts down",
+    "seed": "tsx src/scripts/seed.ts",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.0.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.13.0",
+    "sequelize": "^6.37.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^24.13.2",
+    "@types/supertest": "^6.0.2",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.3",
+    "typescript": "~5.8.2",
+    "vitest": "^4.1.10"
+  }
+}
