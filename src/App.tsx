@@ -1,4 +1,3 @@
-import { ProjectBadge } from './components/ProjectBadge';
 import { useState, useEffect } from 'react';
 import { DashboardLayout } from './components/layout/DashboardLayout';
 import { DashboardMetrics } from './components/dashboard/DashboardMetrics';
@@ -75,7 +74,6 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <PropertyForm />
             <RecentActivity />
-            <ProjectBadge />
           </div>
         </>
       ) : (
